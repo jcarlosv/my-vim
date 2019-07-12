@@ -35,3 +35,20 @@ set shortmess+=c
 set completeopt+=preview
 set completeopt+=menuone
 set completeopt+=longest
+
+" Template name
+let g:email = 'vmjcarlos@gmail.com'
+let g:username= 'Carlos Venegas'
+
+" Golang
+if executable('gopls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'gopls',
+        \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
+        \ 'whitelist': ['go'],
+        \ })
+    autocmd BufWritePre *.go LspDocumentFormatSync
+endif
+
+" Show file all the time
+set laststatus=2
