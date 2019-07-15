@@ -63,3 +63,6 @@ endif
 au BufRead,BufNewFile *.rs set filetype=rust
 let g:lsp_diagnostics_echo_cursor = 1
 imap <c-space> <Plug>(asyncomplete_force_refresh)
+
+"sh
+let g:shfmt_fmt_on_save = 1
