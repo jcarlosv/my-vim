@@ -66,3 +66,6 @@ imap <c-space> <Plug>(asyncomplete_force_refresh)
 
 "sh
 let g:shfmt_fmt_on_save = 1
+
+"fzf
+nnoremap <C-p> :Files<Cr>
