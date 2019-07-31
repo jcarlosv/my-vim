@@ -55,7 +55,7 @@ execute "let g:rustfmt_autosave = 1"
 if executable('rls')
 	au User lsp_setup call lsp#register_server({
 				\ 'name': 'rls',
-				\ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
+				\ 'cmd': {server_info->['rls']},
 				\ 'whitelist': ['rust'],
 				\ })
 	au FileType rust noremap <silent> <C-]> :LspDefinition<CR>
