@@ -69,3 +69,7 @@ let g:shfmt_fmt_on_save = 1
 
 "fzf
 nnoremap <C-p> :Files<Cr>
+
+" no esc
+inoremap jk <Esc>
+imap <Esc> <Nop>
