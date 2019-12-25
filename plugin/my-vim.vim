@@ -73,3 +73,8 @@ nnoremap <C-p> :Files<Cr>
 " no esc
 inoremap jk <Esc>
 imap <Esc> <Nop>
+
+augroup twig_ft
+	  au!
+	    autocmd BufNewFile,BufRead *.gdb   set syntax=gdb
+augroup END
