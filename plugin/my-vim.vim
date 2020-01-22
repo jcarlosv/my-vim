@@ -23,9 +23,12 @@ set completeopt+=preview
 set completeopt+=menuone
 set completeopt+=longest
 
-" Template name
-let g:email = 'vmjcarlos@gmail.com'
-let g:username= 'Carlos Venegas'
+" Templates
+if has("autocmd")
+	augroup templates
+		autocmd BufNewFile *.sh 0r ~/.dotfiles/templates/=template=.sh
+	augroup END
+endif
 
 " Show file all the time
 set laststatus=2
