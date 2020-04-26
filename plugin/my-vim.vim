@@ -33,39 +33,24 @@ endif
 " Show file all the time
 set laststatus=2
 
-" Golang
-if executable('gopls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'gopls',
-        \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
-        \ 'whitelist': ['go'],
-        \ })
-    autocmd BufWritePre *.go LspDocumentFormatSync
-endif
+" Coc
+nmap <silent> <C-]> <Plug>(coc-definition)
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 
-" C/C++
-if executable('clangd')
-    set nu
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'clangd',
-        \ 'cmd': {server_info->['clangd']},
-        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
-        \ })
-endif
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
-"rust
-execute "let g:rustfmt_autosave = 1"
-if executable('rls')
-	au User lsp_setup call lsp#register_server({
-				\ 'name': 'rls',
-				\ 'cmd': {server_info->['rls']},
-				\ 'whitelist': ['rust'],
-				\ })
-	au FileType rust noremap <silent> <C-]> :LspDefinition<CR>
-endif
+let g:coc_snippet_next = '<tab>'
+let g:coc_global_extensions = ['coc-rust-analyzer', 'coc-go', 'coc-sh', 'coc-snippets', 'https://github.com/polypus74/trusty_rusty_snippets']
+
+"Rust
 au BufRead,BufNewFile *.rs set filetype=rust
-let g:lsp_diagnostics_echo_cursor = 1
-imap <c-space> <Plug>(asyncomplete_force_refresh)
 
 "sh
 let g:shfmt_fmt_on_save = 1
@@ -75,7 +60,6 @@ nnoremap <C-p> :Files<Cr>
 
 " no esc
 inoremap jk <Esc>
-imap <Esc> <Nop>
 
 augroup twig_ft
 	  au!
